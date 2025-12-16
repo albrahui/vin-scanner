@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "VIN Scanner",
+  "version": "1.0",
+  "description": "Smart VIN Extractor",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "contextMenus",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "tesseract.min.js",
+        "worker.min.js",
+        "tesseract-core.wasm.js",
+        "tesseract-core.wasm",
+        "eng.traineddata.gz",
+        "ocr_popup.html",
+        "ocr_popup.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

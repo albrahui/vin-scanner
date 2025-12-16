@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>OCR Status</title>
+  <style>
+    :root {
+      --primary-color: #2196F3;
+      --success-color: #4CAF50;
+      --error-color: #F44336;
+      --bg-color: #f8f9fa;
+      --text-color: #333;
+    }
+
+    body {
+      width: 320px;
+      height: 220px;
+      margin: 0;
+      padding: 16px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #e1e4e8;
+      border-top: 4px solid var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .status-text {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .sub-status {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 12px;
+      min-height: 18px;
+    }
+
+    .timer {
+      font-size: 12px;
+      color: #888;
+      background: #eee;
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    body.success .spinner {
+      border-color: var(--success-color);
+      border-top-color: var(--success-color);
+      animation: none;
+      background: var(--success-color);
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    }
+
+    body.error .spinner {
+      border-color: var(--error-color);
+      border-top-color: var(--error-color);
+      animation: none;
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 4px;
+      background-color: #e0e0e0;
+      border-radius: 2px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: var(--primary-color);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+  </style>
+  <script src="ocr_popup.js"></script>
+</head>
+<body>
+  <div class="spinner" id="spinner"></div>
+  <div class="status-text" id="mainStatus">جاري التحضير...</div>
+  <div class="sub-status" id="subStatus">يبدأ النظام...</div>
+  <div class="timer" id="timerBadge">00:00</div>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+</body>
+</html>
